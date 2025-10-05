@@ -1,15 +1,15 @@
 //----------------------------------------------------------------------------------------------------
-// JSGame.mjs - Game System Coordinator (Phase 4 ES6 Module Architecture)
+// JSGame.js - Game System Coordinator (Phase 4 ES6 Module Architecture)
 //----------------------------------------------------------------------------------------------------
 
-import { JSEngine } from './JSEngine.mjs';
-import { CppBridgeSystem } from './components/CppBridgeSystem.mjs';
-import { InputSystem } from './components/InputSystem.mjs';
-import { AudioSystem } from './components/AudioSystem.mjs';
-import { CubeSpawner } from './components/CubeSpawner.mjs';
-import { PropMover } from './components/PropMover.mjs';
-import { CameraShaker } from './components/CameraShaker.mjs';
-import { NewFeatureSystem } from './components/NewFeatureSystem.mjs';
+
+import {CppBridgeSystem} from './components/CppBridgeSystem.js';
+import {InputSystem} from './components/InputSystem.js';
+import {AudioSystem} from './components/AudioSystem.js';
+import {CubeSpawner} from './components/CubeSpawner.js';
+import {PropMover} from './components/PropMover.js';
+import {CameraShaker} from './components/CameraShaker.js';
+// import {NewFeatureSystem} from './components/NewFeatureSystem.js';
 
 /**
  * JSGame - Game system coordinator
@@ -26,8 +26,10 @@ import { NewFeatureSystem } from './components/NewFeatureSystem.mjs';
  * - Each system = separate file (no conflicts)
  */
 
-export class JSGame {
-    constructor(engine) {
+export class JSGame
+{
+    constructor(engine)
+    {
         console.log('(JSGame::constructor)(start) - Phase 4 ES6 Module pattern');
         this.engine = engine;
 
@@ -44,7 +46,8 @@ export class JSGame {
      * Create all component system instances
      * Phase 4: Pure ES6 Module imports with SystemComponent pattern
      */
-    createComponentInstances() {
+    createComponentInstances()
+    {
         console.log('JSGame: Creating component instances...');
 
         // Core C++ bridge (priority: 0)
@@ -55,14 +58,13 @@ export class JSGame {
 
         // Input system (priority: 10)
         this.inputSystem = new InputSystem();
-        this.inputSystem.setAudioSystem(this.audioSystem);
 
         // Game logic systems (priorities: 20, 30, 40)
         this.cubeSpawner = new CubeSpawner(this.engine);
         this.propMover = new PropMover(this.engine);
         this.cameraShaker = new CameraShaker(this.engine);
 
-        this.newFeature = new NewFeatureSystem();
+        // this.newFeature = new NewFeatureSystem();
         console.log('JSGame: All component instances created (Phase 4 ES6)');
     }
 
@@ -70,8 +72,10 @@ export class JSGame {
      * Register all game systems with the engine
      * Phase 4: Pure SystemComponent pattern (no legacy delegation)
      */
-    registerGameSystems() {
-        if (this.engine == null || this.engine.registerSystem == null) {
+    registerGameSystems()
+    {
+        if (this.engine == null || this.engine.registerSystem == null)
+        {
             console.log('JSGame: Engine does not support system registration, using legacy mode');
             return;
         }
@@ -86,7 +90,7 @@ export class JSGame {
         this.engine.registerSystem(null, this.propMover);       // Priority: 30
         this.engine.registerSystem(null, this.cameraShaker);    // Priority: 40
 
-        this.engine.registerSystem(null, this.newFeature);
+        // this.engine.registerSystem(null, this.newFeature);
         console.log('(JSGame::registerGameSystems)(end) - All systems registered with SystemComponent pattern');
     }
 
@@ -97,21 +101,24 @@ export class JSGame {
     /**
      * Enable input system
      */
-    enableInput() {
+    enableInput()
+    {
         return this.engine.setSystemEnabled('inputSystem', true);
     }
 
     /**
      * Disable input system
      */
-    disableInput() {
+    disableInput()
+    {
         return this.engine.setSystemEnabled('inputSystem', false);
     }
 
     /**
      * Check if input system is enabled
      */
-    isInputEnabled() {
+    isInputEnabled()
+    {
         const system = this.engine.getSystem('inputSystem');
         return system ? system.enabled : false;
     }
@@ -119,21 +126,24 @@ export class JSGame {
     /**
      * Enable audio system
      */
-    enableAudio() {
+    enableAudio()
+    {
         return this.engine.setSystemEnabled('audioSystem', true);
     }
 
     /**
      * Disable audio system
      */
-    disableAudio() {
+    disableAudio()
+    {
         return this.engine.setSystemEnabled('audioSystem', false);
     }
 
     /**
      * Check if audio system is enabled
      */
-    isAudioEnabled() {
+    isAudioEnabled()
+    {
         const system = this.engine.getSystem('audioSystem');
         return system ? system.enabled : false;
     }
@@ -141,21 +151,24 @@ export class JSGame {
     /**
      * Get audio system status
      */
-    getAudioStatus() {
+    getAudioStatus()
+    {
         return this.audioSystem ? this.audioSystem.getSystemStatus() : null;
     }
 
     /**
      * Register new system at runtime (for AI agents)
      */
-    registerSystem(id, config) {
+    registerSystem(id, config)
+    {
         return this.engine.registerSystem(id, config);
     }
 
     /**
      * Unregister system at runtime (for AI agents)
      */
-    unregisterSystem(id) {
+    unregisterSystem(id)
+    {
         return this.engine.unregisterSystem(id);
     }
 }

@@ -1,5 +1,5 @@
 //----------------------------------------------------------------------------------------------------
-// SystemComponent.mjs - Abstract base class for all game systems
+// SystemComponent.js - Abstract base class for all game systems
 //----------------------------------------------------------------------------------------------------
 
 /**
@@ -12,8 +12,8 @@
  *
  * Design Philosophy:
  * - Each system = separate file (AI agent can edit independently)
- * - JSGame.mjs coordinates systems, doesn't contain system logic
- * - JSEngine.mjs executes registered systems
+ * - JSGame.js coordinates systems, doesn't contain system logic
+ * - JSEngine.js executes registered systems
  */
 export class SystemComponent {
     /**

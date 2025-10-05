@@ -1,7 +1,7 @@
-// AudioSystem.mjs
+// NewFeatureSystem.js
 // Phase 4 ES6 Module version using SystemComponent pattern
 
-import { SystemComponent } from '../core/SystemComponent.mjs';
+import { SystemComponent } from '../core/SystemComponent.js';
 
 /**
  * AudioSystem - JavaScript wrapper for AudioScriptInterface
