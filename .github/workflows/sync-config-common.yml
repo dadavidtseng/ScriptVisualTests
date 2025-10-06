@@ -26,7 +26,7 @@ on:
       gitignore_source:
         description: '.gitignore source file name (e.g., UnrealEngine.gitignore, DaemonEngine.gitignore)'
         required: false
-        default: 'UnrealEngine.gitignore'
+        default: 'DaemonEngine.gitignore'
         type: string
       # Option to sync .gitattributes file
       sync_gitattributes:
@@ -38,7 +38,7 @@ on:
       gitattributes_source:
         description: '.gitattributes source file name (e.g., UnrealEngine.gitattributes, DaemonEngine.gitattributes)'
         required: false
-        default: 'UnrealEngine.gitattributes'
+        default: 'DaemonEngine.gitattributes'
         type: string
       # Option to sync .editorconfig file
       sync_editorconfig:
