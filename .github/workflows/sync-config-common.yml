@@ -44,7 +44,7 @@ on:
       sync_editorconfig:
         description: 'sync .editorconfig'
         required: false
-        default: true
+        default: false
         type: boolean
       # Source filename for .editorconfig in the remote repository
       editorconfig_source:
